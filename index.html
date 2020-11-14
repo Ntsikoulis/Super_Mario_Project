@@ -20,25 +20,23 @@ body {
 			update : update
 		}, false, false);
 		function preload() {
-			//  We need this because the assets are on github pages
 			//  Remove the next 2 lines if running locally
-			this.load.baseURL = 'https://Nickos172.github.io/Super-Mario/';
+			this.load.baseURL = 'https://Ntsikoulis.github.io/Super_Mario_Project/';
 			this.load.crossOrigin = 'anonymous';
 
-game.load.audio('boden', ['audio/bgm.mp3','audio/bgm.ogg']);
+			game.load.audio('boden', ['audio/bgm.mp3','audio/bgm.ogg']);
 			game.load.audio('hop', ['audio/jump.wav']);
 			game.load.audio('click', ['audio/coin.wav']);
 			game.load.audio('rip', ['audio/stomp.wav']);
 			//game.load.audio('death', ['audio/RipDeath.wav']);
 			game.load.audio('death', ['audio/MarioDeath.mp3']);
 
-			this.load.spritesheet('tiles', 'assets/super_mario_tiles.png', 16,
-					16);
+			this.load.spritesheet('tiles', 'assets/super_mario_tiles.png', 16,16);
 			this.load.spritesheet('goomba', 'assets/goomba.png', 16, 16);
 			this.load.spritesheet('mario', 'assets/mario.png', 16, 16);
 			this.load.spritesheet('coin', 'assets/coin.png', 16, 16);
 			this.load.tilemap('level', 'assets/super_mario_map.json', null,
-					Phaser.Tilemap.TILED_JSON);
+			Phaser.Tilemap.TILED_JSON);
 		}
 
 		
@@ -113,14 +111,12 @@ game.load.audio('boden', ['audio/bgm.mp3','audio/bgm.ogg']);
 			coins = game.add.group();
 			coins.enableBody = true;
 			map.createFromTiles(2, null, 'coin', 'stuff', coins);
-			coins.callAll('animations.add', 'animations', 'spin',
-					[ 0, 0, 1, 2 ], 3, true);
+			coins.callAll('animations.add', 'animations', 'spin',[ 0, 0, 1, 2 ], 3, true);
 			coins.callAll('animations.play', 'animations', 'spin');
 			goombas = game.add.group();
 			goombas.enableBody = true;
 			map.createFromTiles(1, null, 'goomba', 'stuff', goombas);
-			goombas.callAll('animations.add', 'animations', 'walk', [ 0, 1 ],
-					2, true);
+			goombas.callAll('animations.add', 'animations', 'walk', [ 0, 1 ],2, true);
 			goombas.callAll('animations.play', 'animations', 'walk');
 			goombas.setAll('body.bounce.x', 1);
 			goombas.setAll('body.velocity.x', -20);
@@ -135,6 +131,7 @@ game.load.audio('boden', ['audio/bgm.mp3','audio/bgm.ogg']);
 			game.camera.follow(player);
 			cursors = game.input.keyboard.createCursorKeys();
 		}
+		
 		function update() {
 
 			//Screen Print Score
@@ -147,7 +144,6 @@ game.load.audio('boden', ['audio/bgm.mp3','audio/bgm.ogg']);
 			else
 				livestxt.text = "LIVES : " + lives_count;
 			game.world.bringToTop(livestxt);
-
 
 			game.physics.arcade.collide(player, layer);
 			game.physics.arcade.collide(goombas, layer);
